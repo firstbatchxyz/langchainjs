@@ -1,7 +1,13 @@
 import { Tool, ToolParams, StructuredTool } from "@langchain/core/tools";
+import { getEnvironmentVariable } from "@langchain/core/utils/env";
 import { z } from "zod";
 
-/** Return type of a Dria API call. */
+/**
+ * Return type of a Dria API call.
+ *
+ * Dria API returns `success` and `code` within the response body,
+ * in addition to the `ok` and `status` fields of Request API within JS.
+ */
 type DriaAPIReturnType = {
   success: number;
   data: {
@@ -27,8 +33,11 @@ interface DriaCommonParams extends ToolParams {
    * In Dria, this can be seen at the top of the page when viewing a knowledge.
    */
   contractId: string;
-  /** User API key, accessible on your profile page at [Dria](https://dria.co/profile). */
-  apiKey: string;
+  /**
+   * Optionally pass user API key; if not provided, Dria will look for `DRIA_API_KEY` on the environment.
+   *
+   * To find your API key, go to your profile page at [Dria](https://dria.co/profile). */
+  apiKey?: string;
 }
 
 /** Parameters for Dria search tool. */
@@ -44,6 +53,9 @@ export interface DriaSearchParams extends DriaCommonParams {
  * with respect to the input prompt.
  */
 export class DriaSearchTool extends Tool {
+  /** Key for the environment variable that stores Dria Search tool API key. */
+  readonly API_KEY_ENV_VAR_NAME = "DRIA_API_KEY";
+
   readonly k: number;
 
   readonly contractId: string;
@@ -65,10 +77,15 @@ export class DriaSearchTool extends Tool {
 
   constructor(params: DriaSearchParams) {
     super(params);
+    const apiKey =
+      params.apiKey ?? getEnvironmentVariable(this.API_KEY_ENV_VAR_NAME);
+    if (!apiKey) {
+      throw new Error("Missing Dria API key.");
+    }
 
     this.contractId = params.contractId;
     this.headers = {
-      "x-api-key": params.apiKey,
+      "x-api-key": apiKey,
       "Content-Type": "application/json",
     };
 
@@ -124,6 +141,9 @@ export interface DriaQueryParams extends DriaCommonParams {
  * with respect to the query vector.
  */
 export class DriaQueryTool extends StructuredTool {
+  /** Key for the environment variable that stores Dria Query tool API key. */
+  readonly API_KEY_ENV_VAR_NAME = "DRIA_API_KEY";
+
   readonly k: number;
 
   readonly contractId: string;
@@ -149,10 +169,15 @@ export class DriaQueryTool extends StructuredTool {
 
   constructor(params: DriaQueryParams) {
     super(params);
+    const apiKey =
+      params.apiKey ?? getEnvironmentVariable(this.API_KEY_ENV_VAR_NAME);
+    if (!apiKey) {
+      throw new Error("Missing Dria API key.");
+    }
 
     this.contractId = params.contractId;
     this.headers = {
-      "x-api-key": params.apiKey,
+      "x-api-key": apiKey,
       "Content-Type": "application/json",
     };
 
