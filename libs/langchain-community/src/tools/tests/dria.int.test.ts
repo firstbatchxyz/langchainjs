@@ -17,7 +17,7 @@ describe("Dria tools", () => {
 
     it("should have correct fields", async () => {
       const tool = new DriaQueryTool(PARAMS);
-      expect(tool.name).toBe("dria_query");
+      expect(tool.name).toBe("dria-query");
       expect(DriaQueryTool.lc_name()).toBe("DriaQueryTool");
     });
 
@@ -43,7 +43,7 @@ describe("Dria tools", () => {
 
     it("should have correct fields", () => {
       const tool = new DriaSearchTool(PARAMS);
-      expect(tool.name).toBe("dria_search");
+      expect(tool.name).toBe("dria-search");
       expect(DriaSearchTool.lc_name()).toBe("DriaSearchTool");
     });
 
