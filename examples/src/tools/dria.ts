@@ -1,9 +1,16 @@
 import { DriaSearchTool, DriaQueryTool } from "@langchain/community/tools/dria";
 
-const searchTool = new DriaSearchTool();
-const channelResults = await searchTool.invoke("1153400523718938775");
-console.log(channelResults);
+// using Bitcoin Whitepaper at: https://dria.co/knowledge/2KxNbEb040GKQ1DSDNDsA-Fsj_BlQIEAlzBNuiapBR0
+const contractId = "2KxNbEb040GKQ1DSDNDsA-Fsj_BlQIEAlzBNuiapBR0";
 
-const queryTool = new DriaQueryTool();
-const sendMessageResults = await queryTool.invoke("test message");
-console.log(sendMessageResults);
+// search
+const searchTool = new DriaSearchTool({ contractId });
+const searchPrompt = "What is Bitcoin?";
+const searchResults = await searchTool.invoke(searchPrompt);
+console.log(searchResults);
+
+// query
+const queryTool = new DriaQueryTool({ contractId });
+const queryVector = Array.from({ length: 768 }, () => Math.random());
+const queryResults = await queryTool.invoke({ vector: queryVector });
+console.log(queryResults);

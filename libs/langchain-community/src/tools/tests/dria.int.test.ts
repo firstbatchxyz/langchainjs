@@ -30,6 +30,12 @@ describe("Dria tools", () => {
       expect(() => new DriaQueryTool({ ...PARAMS, level: 0 })).toThrow();
       expect(() => new DriaQueryTool({ ...PARAMS, level: 5 })).toThrow();
     });
+
+    it("should throw error without an API key", () => {
+      expect(
+        () => new DriaQueryTool({ contractId: PARAMS.contractId, k: 0 })
+      ).toThrow();
+    });
   });
 
   describe("DriaSearch", () => {
@@ -44,6 +50,12 @@ describe("Dria tools", () => {
     it("should throw error if K is out of range", () => {
       expect(() => new DriaSearchTool({ ...PARAMS, k: 0 })).toThrow();
       expect(() => new DriaSearchTool({ ...PARAMS, k: 20 + 1 })).toThrow();
+    });
+
+    it("should throw error without an API key", () => {
+      expect(
+        () => new DriaSearchTool({ contractId: PARAMS.contractId, k: 0 })
+      ).toThrow();
     });
   });
 });
