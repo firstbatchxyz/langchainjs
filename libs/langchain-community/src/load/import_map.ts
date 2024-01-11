@@ -6,6 +6,7 @@ export * as tools__bingserpapi from "../tools/bingserpapi.js";
 export * as tools__brave_search from "../tools/brave_search.js";
 export * as tools__connery from "../tools/connery.js";
 export * as tools__dadjokeapi from "../tools/dadjokeapi.js";
+export * as tools__dria from "../tools/dria.js";
 export * as tools__dynamic from "../tools/dynamic.js";
 export * as tools__dataforseo_api_search from "../tools/dataforseo_api_search.js";
 export * as tools__google_custom_search from "../tools/google_custom_search.js";

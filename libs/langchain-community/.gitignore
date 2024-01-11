@@ -28,6 +28,9 @@ tools/dadjokeapi.d.ts
 tools/discord.cjs
 tools/discord.js
 tools/discord.d.ts
+tools/dria.cjs
+tools/dria.js
+tools/dria.d.ts
 tools/dynamic.cjs
 tools/dynamic.js
 tools/dynamic.d.ts

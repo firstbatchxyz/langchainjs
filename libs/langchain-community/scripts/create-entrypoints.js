@@ -19,6 +19,7 @@ const entrypoints = {
   "tools/connery": "tools/connery",
   "tools/dadjokeapi": "tools/dadjokeapi",
   "tools/discord": "tools/discord",
+  "tools/dria": "tools/dria",
   "tools/dynamic": "tools/dynamic",
   "tools/dataforseo_api_search": "tools/dataforseo_api_search",
   "tools/gmail": "tools/gmail/index",

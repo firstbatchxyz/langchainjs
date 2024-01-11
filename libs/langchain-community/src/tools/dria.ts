@@ -4,18 +4,13 @@ import { z } from "zod";
 
 /**
  * Return type of a Dria API call.
- *
- * Dria API returns `success` and `code` within the response body,
- * in addition to the `ok` and `status` fields of Request API within JS.
  */
 type DriaAPIReturnType = {
-  success: number;
   data: {
     id: number; // embedding id
     metadata: string; // text
     score: number; // relevance
   }[];
-  code: number;
 };
 
 /** Common parameters for both Dria tools. */
@@ -80,7 +75,7 @@ export class DriaSearchTool extends Tool {
     const apiKey =
       params.apiKey ?? getEnvironmentVariable(this.API_KEY_ENV_VAR_NAME);
     if (!apiKey) {
-      throw new Error("Missing Dria API key.");
+      throw new Error("Missing Dria Search tool API key.");
     }
 
     this.contractId = params.contractId;
@@ -172,7 +167,7 @@ export class DriaQueryTool extends StructuredTool {
     const apiKey =
       params.apiKey ?? getEnvironmentVariable(this.API_KEY_ENV_VAR_NAME);
     if (!apiKey) {
-      throw new Error("Missing Dria API key.");
+      throw new Error("Missing Dria Query tool API key.");
     }
 
     this.contractId = params.contractId;

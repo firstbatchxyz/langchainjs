@@ -7,12 +7,9 @@ import {
 } from "../dria.js";
 
 describe("Dria tools", () => {
-  // to run, go to langchain-community directory and then:
-  // yarn test:single ./src/tools/tests/dria.int.test.ts
-
   const PARAMS = {
     apiKey: "not-an-api-key",
-    contractId: "ABCD1234",
+    contractId: "2KxNbEb040GKQ1DSDNDsA-Fsj_BlQIEAlzBNuiapBR0",
   };
 
   describe("DriaQuery", () => {

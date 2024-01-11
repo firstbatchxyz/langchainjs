@@ -530,6 +530,11 @@
       "import": "./tools/discord.js",
       "require": "./tools/discord.cjs"
     },
+    "./tools/dria": {
+      "types": "./tools/dria.d.ts",
+      "import": "./tools/dria.js",
+      "require": "./tools/dria.cjs"
+    },
     "./tools/dynamic": {
       "types": "./tools/dynamic.d.ts",
       "import": "./tools/dynamic.js",
@@ -1314,6 +1319,9 @@
     "tools/discord.cjs",
     "tools/discord.js",
     "tools/discord.d.ts",
+    "tools/dria.cjs",
+    "tools/dria.js",
+    "tools/dria.d.ts",
     "tools/dynamic.cjs",
     "tools/dynamic.js",
     "tools/dynamic.d.ts",
